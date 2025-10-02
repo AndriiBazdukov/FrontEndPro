@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const number = prompt("Please enter 3 digit number")
+        if (number[0] === number[1] && number[0] === number[2]) {
+            console.log(`All nubers are equal`);
+        }
+        else if(number[0] === number[1]) {
+            console.log(`Only first and second numbers are equal`);
+        }
+        else if(number[0] === number[2]) {
+            console.log(`Only first and third numbers are equal`);
+        }
+        else if(number[2] === number[1]) {
+            console.log(`Only second and third numbers are equal`);
+        }
+        else {
+            console.log(`No equal numbers`);
+        }
+    </script>
+
+</body>
+
+</html>

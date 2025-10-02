@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const yOB = prompt("Enter year of birth");
+        const city = prompt("Enter city");
+        const sport = prompt("Enter sport");
+
+        let cityMessage;
+
+        if (city === "Київ") {
+            cityMessage = "Ти живеш у столиці України"
+        }
+        else if (city === "Вашингтон"){
+            cityMessage = "Ти живеш у столиці USA"
+        }
+        else if (city === "Лондон"){
+            cityMessage = "Ти живеш у столиці UK"
+        }
+        else {
+            cityMessage = `ти живеш у місті ${city}`
+        }
+
+        console.log(`Your age is ${2025 - yOB} \n${cityMessage}`);
+    </script>
+
+</body>
+
+</html>
