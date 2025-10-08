@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const contactList = {
+            contacts: [
+                { name: "Duke", phone: "111-111-111", email: "email#1" },
+                { name: "Nuke", phone: "222-222-222", email: "email#2" }
+            ],
+
+            searchByName(){
+                let name = prompt("Please enter name")
+                for (let index = 0; index < this.contacts.length; index++) {
+
+                    if(this.contacts[index].name == name){
+                        console.log(`Result: ${this.contacts[index].name}, Phone: ${this.contacts[index].phone}, Email: ${this.contacts[index].email}`)
+                    }
+                }
+            },
+
+            addContac(){
+                let name = prompt("Please enter name")
+                let phone = prompt("Please enter phone")
+                let email = prompt("Please enter email")
+
+                this.contacts.push({ name, phone, email });
+            }
+        }
+
+       contactList.addContac();
+       contactList.searchByName();
+    </script>
+
+</body>
+
+</html>

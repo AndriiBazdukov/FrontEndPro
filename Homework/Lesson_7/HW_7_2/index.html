@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Calculate() {
+            let text = prompt("Please enter numbers").replaceAll(",", "").split(" ");
+
+            let sum = 0;
+            let total = 0
+
+            for (let index = 0; index < text.length; index++) {
+                let number = Number(text[index])
+                if (!isNaN(number) && number != "") {
+                    sum += number;
+                    total++;
+                }
+            }
+
+            console.log(sum / total);
+        }
+
+        Calculate();
+    </script>
+
+</body>
+
+</html>
