@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function askNumber() {
+            let lastInput = null;
+
+            for (let i = 0; i < 10; i++) {
+                const input = prompt("Enter number more than 100:");
+
+                if (input === null || input.trim() === "" || isNaN(input)) {
+                    lastInput = input;
+                    break;
+                }
+
+                lastInput = +input;
+
+                if (lastInput > 100) {
+                    break;
+                }
+            }
+
+            console.log(lastInput);
+        }
+        askNumber();
+    </script>
+
+</body>
+
+</html>

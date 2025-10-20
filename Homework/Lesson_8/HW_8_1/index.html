@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function makeSum() {
+            let total = 0;
+
+            return function (n) {
+                total += n;
+                return total;
+            }
+        }
+
+        const sum = makeSum();
+
+        console.log(sum(4));
+        console.log(sum(6));
+        console.log(sum(10));
+        console.log(sum(7)); 
+    </script>
+
+</body>
+
+</html>
