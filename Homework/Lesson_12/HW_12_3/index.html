@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Task list</h2>
+
+    <ul id="taskList">
+        <li>
+            <span class="task-text">Task 1:</span>
+            <button class="delete-btn">Delete</button>
+        </li>
+    </ul>
+
+    <input type="text" id="taskInput" placeholder="Add new task">
+    <button id="addBtn">Add</button>
+
+    <script>
+        let taskCount = 1;
+
+        const taskList = document.getElementById("taskList");
+        const input = document.getElementById("taskInput");
+        const addBtn = document.getElementById("addBtn");
+
+        taskList.addEventListener("click", function (event) {
+            if (event.target.classList.contains("delete-btn")) {
+                event.target.parentElement.remove();
+                taskCount--;
+            }
+        });
+
+        function createTask(text) {
+            const li = document.createElement("li");
+
+            const span = document.createElement("span");
+            span.className = "task-text";
+            span.textContent = text;
+
+            const btn = document.createElement("button");
+            btn.className = "delete-btn";
+            btn.textContent = "Delete";
+
+            li.appendChild(span);
+            li.appendChild(btn);
+
+            return li;
+        }
+
+        addBtn.addEventListener("click", function () {
+            taskCount++;
+            const text = input.value;
+            const finalText = `Task ${taskCount}: ${text} `; 
+
+
+            const li = createTask(finalText);
+            taskList.appendChild(li);
+        });
+    </script>
+
+</body>
+
+</html>

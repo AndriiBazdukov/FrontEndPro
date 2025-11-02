@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td {
+            border: 1px solid;
+            padding: 6px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="addLink">Enter address</button>
+    <button id="redirect">Redirect</button>
+    
+    <script>
+        let url = null;
+        document.getElementById("addLink").addEventListener("click", function () {
+            url = prompt("Enter address:");
+        });
+
+        document.getElementById("redirect").addEventListener("click", function () {
+            if (url) {
+                window.location.href = url;
+            } else {
+                alert("Enter address:");
+            }
+        });
+    </script>
+
+</body>
+
+</html>
