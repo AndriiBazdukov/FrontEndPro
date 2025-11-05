@@ -21,7 +21,7 @@
     display: none;
 }
 .contact_section .contact_form form input, .contact_section .contact_form form textarea {
-    border: 1px solid #FFFFFF;
+    border: 2px solid #FFFFFF;
     box-sizing: border-box;
     border-radius: 8px;
     font-family: 'Montserrat';
@@ -30,7 +30,7 @@
     font-size: 16px;
     line-height: 26px;
     color: #B3B3BA;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 
 .contact_section .send_message .btn {
@@ -48,4 +48,17 @@
     border: 0;
     border-radius: 12px;
     width: 100%;
+}
+
+.input-error {
+    border: 2px solid red !important;
+}
+
+.error-text {
+    color: red;
+    font-size: 12px;
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
 }
