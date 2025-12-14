@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Student(firstName, lastName, birthYear, grades = []) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.birthYear = birthYear;
+            this.grades = grades;
+
+            this.attendance = new Array(25).fill(null);
+            this.attendanceIndex = 0;
+
+            this.getAge = function () {
+                return new Date().getFullYear() - this.birthYear;
+            };
+
+            this.getAverageGrade = function () {
+                if (this.grades.length === 0) return 0;
+                return this.grades.reduce((sum, grade) => sum + grade, 0) / this.grades.length;
+            };
+
+            this.present = function () {
+                if (this.attendanceIndex >= 25) {
+                    console.warn("Attendance log is full!");
+                    return;
+                }
+                this.attendance[this.attendanceIndex] = true;
+                this.attendanceIndex++;
+            };
+
+            this.absent = function () {
+                if (this.attendanceIndex >= 25) {
+                    console.warn("Attendance log is full!");
+                    return;
+                }
+                this.attendance[this.attendanceIndex] = false;
+                this.attendanceIndex++;
+            };
+
+            this.summary = function () {
+                const avgGrade = this.getAverageGrade();
+                const attended = this.attendance.filter(v => v === true).length;
+                const total = this.attendance.filter(v => v !== null).length;
+                const avgAttendance = total > 0 ? attended / total : 0;
+
+                if (avgGrade > 90 && avgAttendance > 0.9) {
+                    return "Excellent!";
+                }
+
+                if (avgGrade > 90 || avgAttendance > 0.9) {
+                    return "Good";
+                }
+
+                return "Bad!";
+            };
+        }
+
+        const student1 = new Student("John", "Smith", 2003, [100, 95, 92, 98]);
+        const student2 = new Student("Mary", "Johnson", 2004, [70, 75, 80]);
+        const student3 = new Student("Paul", "Brown", 2002, [88, 91, 85]);
+
+        student1.present();
+        student1.present();
+        student1.absent();
+
+        student2.absent();
+        student2.absent();
+        student2.present();
+
+        student3.present();
+        student3.present();
+        student3.present();
+
+        console.log(student1.firstName, "age:", student1.getAge());
+        console.log("Average grade:", student1.getAverageGrade());
+        console.log("Summary:", student1.summary());
+
+        console.log(student2.firstName, "Summary:", student2.summary());
+        console.log(student3.firstName, "Summary:", student3.summary());
+    </script>
+</body>
+
+</html>
