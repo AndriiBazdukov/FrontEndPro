@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+
+<body class="p-4">
+
+    <div class="container">
+        <h2 class="mb-3">Task list</h2>
+
+        <ul id="taskList" class="list-group mb-3"></ul>
+
+        <div class="input-group">
+            <input id="taskInput" class="form-control" placeholder="Add new task">
+            <button id="addBtn" class="btn btn-primary">Add</button>
+        </div>
+    </div>
+
+    <div class="modal fade" id="taskModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Task</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <p id="modalTaskText"></p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        let counter = 0;
+        const modal = new bootstrap.Modal('#taskModal');
+
+        $("#addBtn").on("click", function () {
+            const text = $("#taskInput").val().trim();
+            if (!text) return;
+
+            counter++;
+
+            const item = $("<li>").addClass("list-group-item d-flex justify-content-between")
+                .append(
+                    $("<span>")
+                        .addClass("task-text")
+                        .attr("role", "button")
+                        .text(`Task ${counter}: ${text}`),
+                    $("<button>")
+                        .addClass("btn btn-danger btn-sm delete-btn")
+                        .text("Delete")
+                );
+
+            $("#taskList").append(item);
+            $("#taskInput").val("");
+        });
+
+        $("#taskList").on("click", ".delete-btn", function () {
+            $(this).closest("li").remove();
+        });
+
+        $("#taskList").on("click", "li", function (event) {
+            if ($(event.target).closest(".delete-btn").length) {
+                return;
+            }
+
+            const text = $(this).find(".task-text").text();
+            $("#modalTaskText").text(text);
+            modal.show();
+        });
+    </script>
+
+</body>
+
+</html>

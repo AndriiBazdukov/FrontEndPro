@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Weather Widget</title>
+    <style>
+        .weather {
+            width: 250px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #f3f3f3;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="weather">
+        <h3 id="city">—</h3>
+        <p id="temp">—</p>
+        <p id="desc">—</p>
+        <button id="refresh">🔄 Refresh</button>
+    </div>
+    <script>
+        const API_KEY = '9b31397bca43cd1421280cde9958ebb2';
+        const URL = `https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=${API_KEY}`;
+
+        const cityEl = document.getElementById('city');
+        const tempEl = document.getElementById('temp');
+        const descEl = document.getElementById('desc');
+        const refreshBtn = document.getElementById('refresh');
+
+        async function loadWeather() {
+            try {
+                const response = await fetch(URL);
+                if (!response.ok) {
+                    throw new Error('Error');
+                }
+
+                const data = await response.json();
+
+                cityEl.textContent = data.name;
+                tempEl.textContent = `🌡 ${Math.round(data.main.temp)}°F`;
+                descEl.textContent = `☁ ${data.weather[0].description}`;
+
+            } catch (error) {
+                cityEl.textContent = 'Error';
+                tempEl.textContent = '';
+                descEl.textContent = error.message;
+            }
+        }
+
+        loadWeather();
+        
+        refreshBtn.addEventListener('click', loadWeather);
+    </script>
+</body>
+
+</html>
