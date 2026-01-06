@@ -2,5 +2,13 @@
   "dependencies": {
     "bootstrap": "^5.3.8",
     "jquery": "^3.7.1"
+  },
+  "scripts": {
+    "build": "babel Homework/Lesson_21/HW_21_1 --out-dir dist"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.28.3",
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5"
   }
 }
