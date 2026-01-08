@@ -1,0 +1,11 @@
+body {
+    background: #f8f9fa;
+}
+
+.task-text {
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

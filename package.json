@@ -4,11 +4,40 @@
     "jquery": "^3.7.1"
   },
   "scripts": {
-    "build": "babel Homework/Lesson_21/HW_21_1 --out-dir dist"
+    "build": "babel Homework/Lesson_22/HW_22_1 --out-dir dist",
+    "build:wp": "webpack",
+    "watch": "webpack --watch",
+    "start": "webpack serve --mode development"
   },
   "devDependencies": {
     "@babel/cli": "^7.28.3",
     "@babel/core": "^7.28.5",
-    "@babel/preset-env": "^7.28.5"
-  }
+    "@babel/preset-env": "^7.28.5",
+    "babel-loader": "^10.0.0",
+    "css-loader": "^7.1.2",
+    "css-minimizer-webpack-plugin": "^7.0.4",
+    "gulp-babel": "^8.0.0",
+    "mini-css-extract-plugin": "^2.9.4",
+    "sass": "^1.97.2",
+    "sass-loader": "^16.0.6",
+    "terser-webpack-plugin": "^5.3.16",
+    "webpack": "^5.104.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
+  },
+  "name": "frontendpro",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndriiBazdukov/FrontEndPro.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndriiBazdukov/FrontEndPro/issues"
+  },
+  "homepage": "https://github.com/AndriiBazdukov/FrontEndPro#readme",
+  "description": ""
 }
