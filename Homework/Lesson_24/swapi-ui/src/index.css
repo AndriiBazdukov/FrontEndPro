@@ -1,0 +1,25 @@
+body {
+  background-color: #1f2326;
+  color: #fff;
+}
+
+.api-input {
+  background-color: #2b2f33;
+  border: none;
+  color: #fff;
+}
+
+.api-input::placeholder {
+  color: #aaa;
+}
+
+.result-box {
+  background-color: #fff;
+  color: #000;
+  border-radius: 6px;
+  padding: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+  font-family: monospace;
+  font-size: 14px;
+}
