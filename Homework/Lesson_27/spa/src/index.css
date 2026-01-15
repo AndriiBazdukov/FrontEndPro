@@ -1,0 +1,20 @@
+body[data-theme='light'] {
+  background: #ffffff;
+  color: #000;
+}
+
+body[data-theme='dark'] {
+  background: #121212;
+  color: #fff;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  background: #ddd;
+}
+
+a {
+  margin-right: 12px;
+}
