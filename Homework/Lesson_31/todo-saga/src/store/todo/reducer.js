@@ -1,32 +1,20 @@
-import * as types from './types';
-
 const initialState = {
     list: [],
     loading: false,
 };
 
-export default function todoReducer(state = initialState, action) {
+export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case types.LOAD_TODOS:
+        case 'LOAD_TODOS':
             return { ...state, loading: true };
 
-        case types.LOAD_TODOS_SUCCESS:
-            return { ...state, loading: false, list: action.payload };
+        case 'LOAD_TODOS_SUCCESS':
+            return { list: action.payload, loading: false };
 
-        case types.ADD_TODO:
-            return {
-                ...state,
-                list: [
-                    ...state.list,
-                    {
-                        id: Date.now(),
-                        text: action.payload,
-                        completed: false,
-                    },
-                ],
-            };
+        case 'ADD_TODO_SUCCESS':
+            return { ...state, list: [...state.list, action.payload] };
 
-        case types.UPDATE_TODO:
+        case 'UPDATE_TODO_SUCCESS':
             return {
                 ...state,
                 list: state.list.map(t =>
@@ -34,13 +22,13 @@ export default function todoReducer(state = initialState, action) {
                 ),
             };
 
-        case types.DELETE_TODO:
+        case 'DELETE_TODO_SUCCESS':
             return {
                 ...state,
                 list: state.list.filter(t => t.id !== action.payload),
             };
 
-        case types.CLEAR_TODOS:
+        case 'CLEAR_TODOS_SUCCESS':
             return { ...state, list: [] };
 
         default:
