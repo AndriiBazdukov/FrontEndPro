@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "login": "admin",
+      "password": "admin123",
+      "token": "12345"
+    }
+  ],
+  "products": [
+    {
+      "title": "iPhone 17",
+      "price": 1200,
+      "category": "Phones",
+      "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNxA7DB6FlF8no2OonAtViLjUa9Drq38Wxhg&s",
+      "quantity": "5",
+      "id": "1"
+    }
+  ]
+}
