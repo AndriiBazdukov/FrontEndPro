@@ -1,4 +1,4 @@
-import { Form, Field } from "react-final-form";
+import { Form, Field } from 'react-final-form';
 import {
     TextField,
     Button,
@@ -6,17 +6,18 @@ import {
     Typography,
     IconButton,
     InputAdornment,
-    Paper,
-} from "@mui/material";
+    Paper
+} from '@mui/material';
 
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "./authSlice";
-import { Navigate } from "react-router-dom";
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+
+import { login } from './authSlice';
+import { required } from '../../utils/validators';
 
 export default function LoginPage() {
-    console.log('LoginPage render');
     const dispatch = useDispatch();
     const token = useSelector(s => s.auth.token);
     const error = useSelector(s => s.auth.error);
@@ -26,34 +27,26 @@ export default function LoginPage() {
     if (token) return <Navigate to="/" />;
 
     const onSubmit = values => {
-        console.log('onSubmit called with values:', values);
         dispatch(login(values));
-    };
-
-    const validate = values => {
-        const errors = {};
-        if (!values.login) errors.login = "Required";
-        if (!values.password) errors.password = "Required";
-        return errors;
     };
 
     return (
         <Box
             sx={{
-                minHeight: "100vh",
-                backgroundColor: "#49A36D", // Rozetka green
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
+                minHeight: '100vh',
+                backgroundColor: '#49A36D',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
             }}
         >
             <Paper
                 elevation={6}
                 sx={{
                     width: 420,
-                    padding: 5,
+                    p: 5,
                     borderRadius: 2,
-                    textAlign: "center",
+                    textAlign: 'center'
                 }}
             >
                 {/* LOGO */}
@@ -80,10 +73,9 @@ export default function LoginPage() {
 
                 <Form
                     onSubmit={onSubmit}
-                    validate={validate}
                     render={({ handleSubmit }) => (
                         <form onSubmit={handleSubmit}>
-                            <Field name="login">
+                            <Field name="login" validate={required}>
                                 {({ input, meta }) => (
                                     <TextField
                                         {...input}
@@ -93,41 +85,17 @@ export default function LoginPage() {
                                         variant="filled"
                                         error={meta.touched && meta.error}
                                         helperText={meta.touched && meta.error}
-                                        InputProps={{
-                                            disableUnderline: true,
-                                        }}
-                                        sx={{
-                                            "& .MuiFilledInput-root": {
-                                                backgroundColor: "#eee",
-                                            },
-                                            borderRadius: 1,
-
-                                            "& .MuiInputBase-root": {
-                                                height: 48,
-                                            },
-
-                                            "& .MuiInputBase-input": {
-                                                height: "100%",
-                                                boxSizing: "border-box",
-                                                padding: "0 14px",
-                                                display: "flex",
-                                                alignItems: "center",
-                                            },
-
-                                            "& input::placeholder": {
-                                                color: "#00A046",
-                                                opacity: 1,
-                                            },
-                                        }}
+                                        InputProps={{ disableUnderline: true }}
+                                        sx={inputStyles}
                                     />
                                 )}
                             </Field>
 
-                            <Field name="password">
+                            <Field name="password" validate={required}>
                                 {({ input, meta }) => (
                                     <TextField
                                         {...input}
-                                        type={show ? "text" : "password"}
+                                        type={show ? 'text' : 'password'}
                                         placeholder="Password"
                                         fullWidth
                                         margin="normal"
@@ -142,31 +110,9 @@ export default function LoginPage() {
                                                         {show ? <VisibilityOff /> : <Visibility />}
                                                     </IconButton>
                                                 </InputAdornment>
-                                            ),
+                                            )
                                         }}
-                                        sx={{
-                                            "& .MuiFilledInput-root": {
-                                                backgroundColor: "#eee",
-                                            },
-                                            borderRadius: 1,
-
-                                            "& .MuiInputBase-root": {
-                                                height: 48,
-                                            },
-
-                                            "& .MuiInputBase-input": {
-                                                height: "100%",
-                                                boxSizing: "border-box",
-                                                padding: "0 14px",
-                                                display: "flex",
-                                                alignItems: "center",
-                                            },
-
-                                            "& input::placeholder": {
-                                                color: "#00A046",
-                                                opacity: 1,
-                                            },
-                                        }}
+                                        sx={inputStyles}
                                     />
                                 )}
                             </Field>
@@ -180,17 +126,15 @@ export default function LoginPage() {
                             <Button
                                 type="submit"
                                 fullWidth
+                                variant="contained"
                                 sx={{
                                     mt: 3,
                                     height: 45,
-                                    backgroundColor: "#49A36D",
+                                    backgroundColor: '#49A36D',
                                     fontSize: 16,
-                                    fontWeight: "bold",
-                                    "&:hover": {
-                                        backgroundColor: "#3a8a5b",
-                                    },
+                                    fontWeight: 700,
+                                    '&:hover': { backgroundColor: '#3a8a5b' }
                                 }}
-                                variant="contained"
                             >
                                 Login
                             </Button>
@@ -201,3 +145,23 @@ export default function LoginPage() {
         </Box>
     );
 }
+
+const inputStyles = {
+    '& .MuiFilledInput-root': {
+        backgroundColor: '#eee'
+    },
+    borderRadius: 1,
+    '& .MuiInputBase-root': {
+        height: 48
+    },
+    '& .MuiInputBase-input': {
+        height: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        padding: '0 14px'
+    },
+    '& input::placeholder': {
+        color: '#00A046',
+        opacity: 1
+    }
+};

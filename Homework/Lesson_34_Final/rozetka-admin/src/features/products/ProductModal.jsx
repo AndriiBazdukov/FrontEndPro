@@ -12,6 +12,12 @@ import {
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
+import {
+  required,
+  positiveNumber,
+  composeValidators
+} from '../../utils/validators';
+
 const TextFieldAdapter = ({ input, meta, ...rest }) => (
   <TextField
     {...input}
@@ -29,11 +35,7 @@ const TextFieldAdapter = ({ input, meta, ...rest }) => (
     }}
     sx={{
       mb: 2,
-      '& input': {
-        color: '#16a34a',
-        fontWeight: 600
-      },
-      '& textarea': {
+      '& input, & textarea': {
         color: '#16a34a',
         fontWeight: 600
       }
@@ -50,17 +52,6 @@ export default function ProductModal({
   product,
   isEdit
 }) {
-  console.log('ProductModal render, open:', open);
-  const validate = values => {
-    const errors = {};
-    if (!values.title) errors.title = 'Required';
-    if (!values.price) errors.price = 'Required';
-    if (!values.photo) errors.photo = 'Required';
-    if (!values.category) errors.category = 'Required';
-    if (!values.quantity) errors.quantity = 'Required';
-    return errors;
-  };
-
   return (
     <Dialog
       open={open}
@@ -90,33 +81,46 @@ export default function ProductModal({
       <Form
         onSubmit={onSubmit}
         initialValues={isEdit ? product : {}}
-        validate={validate}
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             <DialogContent>
 
               <Typography color="#fff">Category</Typography>
-              <Field name="category" component={TextFieldAdapter} />
+              <Field
+                name="category"
+                component={TextFieldAdapter}
+                validate={required}
+              />
 
               <Typography color="#fff">Name</Typography>
-              <Field name="title" component={TextFieldAdapter} />
+              <Field
+                name="title"
+                component={TextFieldAdapter}
+                validate={required}
+              />
 
               <Typography color="#fff">Quantity</Typography>
               <Field
                 name="quantity"
-                component={TextFieldAdapter}
                 type="number"
+                component={TextFieldAdapter}
+                validate={composeValidators(required, positiveNumber)}
               />
 
               <Typography color="#fff">Price</Typography>
               <Field
                 name="price"
-                component={TextFieldAdapter}
                 type="number"
+                component={TextFieldAdapter}
+                validate={composeValidators(required, positiveNumber)}
               />
 
               <Typography color="#fff">Photo</Typography>
-              <Field name="photo" component={TextFieldAdapter} />
+              <Field
+                name="photo"
+                component={TextFieldAdapter}
+                validate={required}
+              />
 
               <Typography color="#fff">Description</Typography>
               <Field
@@ -128,10 +132,9 @@ export default function ProductModal({
 
             </DialogContent>
 
-            {/* BUTTONS */}
+            {/* ACTIONS */}
             <DialogActions sx={{ px: 3, pb: 3 }}>
               <Box display="flex" gap={2} width="100%">
-                
                 <Button
                   fullWidth
                   onClick={onClose}
@@ -139,9 +142,7 @@ export default function ProductModal({
                     backgroundColor: '#6d6a6a',
                     color: '#fff',
                     fontWeight: 700,
-                    '&:hover': {
-                      backgroundColor: '#5a5757'
-                    }
+                    '&:hover': { backgroundColor: '#5a5757' }
                   }}
                 >
                   Cancel
@@ -154,14 +155,11 @@ export default function ProductModal({
                     backgroundColor: '#49a36f',
                     color: '#fff',
                     fontWeight: 700,
-                    '&:hover': {
-                      backgroundColor: '#3b8a5d'
-                    }
+                    '&:hover': { backgroundColor: '#3b8a5d' }
                   }}
                 >
                   Submit
                 </Button>
-
               </Box>
             </DialogActions>
           </form>
